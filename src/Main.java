@@ -9,14 +9,22 @@ public class Main {
         String url="jdbc:postgresql://localhost:5432/postgres";
         String username="postgres";
         String pass="0000";
-        String query="select sname from student where sid=1";
+        String query="select * from student";
 
         Connection db=DriverManager.getConnection(url,username,pass);
         Statement st=db.createStatement();
         ResultSet rs=st.executeQuery(query);
         System.out.println("Connection Established!");
-        rs.next();
-        System.out.println(rs.getString("sname"));
+
+        while(rs.next()){
+
+            System.out.print(rs.getInt("sid")+" ");
+            System.out.print(rs.getString("sname")+" ");
+            System.out.println(rs.getInt("age")+" ");
+
+        }
+
+
         db.close();
         System.out.println("Connection Closed!!");
     }
